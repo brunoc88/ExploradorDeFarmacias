@@ -39,7 +39,7 @@ public class FarmaciaAdapter extends RecyclerView.Adapter<FarmaciaAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.nombre.setText(listaDeFarmacias.get(position).getNombre());
-        holder.foto.setImageResource(listaDeFarmacias.get(position).getFoto());
+        //holder.foto.setImageResource(listaDeFarmacias.get(position).getFoto());
         holder.horario.setText(listaDeFarmacias.get(position).getHorario());
         holder.mas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +71,7 @@ public class FarmaciaAdapter extends RecyclerView.Adapter<FarmaciaAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.tvNombre);
-            foto = itemView.findViewById(R.id.ivFoto);
+            //foto = itemView.findViewById(R.id.ivFoto);
             horario = itemView.findViewById(R.id.tvHorario);
             mas = itemView.findViewById(R.id.btMas);
         }
