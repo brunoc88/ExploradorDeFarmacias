@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/ivFarmacia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -41,7 +41,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivFarmacia"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <TextView
         android:id="@+id/tvHorario"
@@ -53,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDireccion"
-        app:layout_constraintVertical_bias="0.232" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <Button
         android:id="@+id/btVolver"
@@ -63,6 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHorario" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHorario"
+        app:layout_constraintVertical_bias="0.171" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
