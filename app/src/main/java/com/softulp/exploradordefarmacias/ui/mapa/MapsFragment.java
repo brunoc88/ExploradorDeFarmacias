@@ -46,13 +46,14 @@ public class MapsFragment extends Fragment {
             googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
              */
-            // Asume que vm ya ha sido inicializado y contiene la lista de farmacias
+
+            //guardo la lista de farmacias
             List<LatLng> farmacias = vm.getFarmacias();
             for (LatLng ubicacion : farmacias) {
                 map.addMarker(new MarkerOptions().position(ubicacion).title("Farmacia"));
             }
 
-            // Ajustar cámara, zoom, etc., según sea necesario
+            // Ajusto camara, zoom, etc...
             if (!farmacias.isEmpty()) {
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(farmacias.get(0), 15));
             }

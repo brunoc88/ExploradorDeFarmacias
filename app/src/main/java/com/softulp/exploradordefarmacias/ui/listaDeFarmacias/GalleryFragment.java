@@ -35,7 +35,7 @@ public class GalleryFragment extends Fragment {
         vm.getListaMutable().observe(getViewLifecycleOwner(), new Observer<List<Farmacia>>() {
             @Override
             public void onChanged(List<Farmacia> farmacias) {
-                RecyclerView rv = binding.rvlista;  // Asegúrate de usar el binding aquí
+                RecyclerView rv = binding.rvlista;
                 GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
                 rv.setLayoutManager(glm);
                 FarmaciaAdapter farmaciaAdapter = new FarmaciaAdapter(farmacias, getContext(), getLayoutInflater());
@@ -51,7 +51,7 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null; // Correcto para evitar memory leaks
+        binding = null;
     }
 }
 

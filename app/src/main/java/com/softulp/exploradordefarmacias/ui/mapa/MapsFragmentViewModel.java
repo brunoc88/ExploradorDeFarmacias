@@ -73,7 +73,7 @@ public class MapsFragmentViewModel extends AndroidViewModel {
     }
     private void cargarFarmacias() {
         farmacias = new ArrayList<>();
-        // Añade las coordenadas de las farmacias
+        // Añado las coordenadas de las farmacias
         farmacias.add(new LatLng(-33.672547, -65.472500)); // farmacia cruz verde
         farmacias.add(new LatLng(-33.674869, -65.468547)); // farmacia acetto
     }

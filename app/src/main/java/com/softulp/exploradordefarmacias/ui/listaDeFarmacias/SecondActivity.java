@@ -46,7 +46,7 @@ public class SecondActivity extends AppCompatActivity {
         volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish(); // Simplemente finaliza la actividad actual
+                finish();
             }
         });
 

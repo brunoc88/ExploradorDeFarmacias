@@ -24,8 +24,8 @@ public class FarmaciaAdapter extends RecyclerView.Adapter<FarmaciaAdapter.ViewHo
 
     public FarmaciaAdapter(List<Farmacia> listaDeFarmacias, Context context, LayoutInflater layoutInflater) {
         this.listaDeFarmacias = listaDeFarmacias;
-        this.context = context;  // Asignar el parámetro al campo
-        this.li = layoutInflater; // Usar el parámetro
+        this.context = context;
+        this.li = layoutInflater;
     }
 
 
