@@ -21,10 +21,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.softulp.exploradordefarmacias.R;
 import com.softulp.exploradordefarmacias.databinding.FragmentMapsBinding;
 
+import java.util.List;
+
 public class MapsFragment extends Fragment {
     private FragmentMapsBinding binding;
     private GoogleMap map;
     private MapsFragmentViewModel vm;
+
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -43,6 +46,16 @@ public class MapsFragment extends Fragment {
             googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
              */
+            // Asume que vm ya ha sido inicializado y contiene la lista de farmacias
+            List<LatLng> farmacias = vm.getFarmacias();
+            for (LatLng ubicacion : farmacias) {
+                map.addMarker(new MarkerOptions().position(ubicacion).title("Farmacia"));
+            }
+
+            // Ajustar cámara, zoom, etc., según sea necesario
+            if (!farmacias.isEmpty()) {
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(farmacias.get(0), 15));
+            }
         }
     };
 
@@ -78,4 +91,6 @@ public class MapsFragment extends Fragment {
         binding = null;
         vm.pararLecturaPermanente();
     }
+
+    //
 }

@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_maps" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.softulp.exploradordefarmacias.ui.gallery.GalleryFragment"
-        android:label="gallery"
+        android:id="@+id/nav_lista"
+        android:name="com.softulp.exploradordefarmacias.ui.listaDeFarmacias.GalleryFragment"
+        android:label="Lista de Farmacias"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment

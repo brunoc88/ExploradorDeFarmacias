@@ -17,15 +17,21 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsFragmentViewModel extends AndroidViewModel {
 
     private MutableLiveData<Location> mutableLocation;
     private FusedLocationProviderClient fused;
     private LocationCallback callback;
+    private List<LatLng> farmacias;
     public MapsFragmentViewModel(@NonNull Application application) {
         super(application);
         fused = LocationServices.getFusedLocationProviderClient(getApplication());
+        cargarFarmacias();
     }
     public LiveData<Location> getMlocation() {
         if (mutableLocation == null) {
@@ -65,7 +71,16 @@ public class MapsFragmentViewModel extends AndroidViewModel {
         }
         fused.requestLocationUpdates(request, callback, null);
     }
+    private void cargarFarmacias() {
+        farmacias = new ArrayList<>();
+        // Añade las coordenadas de las farmacias
+        farmacias.add(new LatLng(-33.672547, -65.472500)); // farmacia cruz verde
+        farmacias.add(new LatLng(-33.674869, -65.468547)); // farmacia acetto
+    }
 
+    public List<LatLng> getFarmacias() {
+        return farmacias;
+    }
     public void pararLecturaPermanente(){
         fused.removeLocationUpdates(callback);
     }
