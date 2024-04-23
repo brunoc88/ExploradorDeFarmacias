@@ -1,4 +1,4 @@
-package com.softulp.exploradordefarmacias.ui.slideshow;
+package com.softulp.exploradordefarmacias.ui.salir;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +26,7 @@ public class SlideshowFragment extends Fragment {
 
         final TextView textView = binding.textSlideshow;
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        Dialogo.mostrarDialogo(getContext());
         return root;
     }
 

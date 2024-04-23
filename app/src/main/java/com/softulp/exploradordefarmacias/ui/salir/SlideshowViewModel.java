@@ -1,4 +1,4 @@
-package com.softulp.exploradordefarmacias.ui.slideshow;
+package com.softulp.exploradordefarmacias.ui.salir;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
