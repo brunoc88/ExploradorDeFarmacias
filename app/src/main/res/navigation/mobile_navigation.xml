@@ -20,6 +20,6 @@
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.softulp.exploradordefarmacias.ui.salir.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Salir"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
