@@ -13,7 +13,7 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.softulp.exploradordefarmacias.ui.configuracion.configFragment"
-        android:label="Mapa"
+        android:label="Configuracion"
         tools:layout="@layout/fragment_config" />
     <fragment
         android:id="@+id/nav_elegirMap"
