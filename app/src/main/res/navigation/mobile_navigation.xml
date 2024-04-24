@@ -10,21 +10,43 @@
         android:name="com.softulp.exploradordefarmacias.ui.mapa.MapsFragment"
         android:label="Mapa"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.softulp.exploradordefarmacias.ui.configuracion.configFragment"
+        android:label="Mapa"
+        tools:layout="@layout/fragment_config" />
+    <fragment
+        android:id="@+id/nav_elegirMap"
+        android:name="com.softulp.exploradordefarmacias.ui.configuracion.SeleccionMapFragment"
+        android:label="Seleccion Mapa"
+        tools:layout="@layout/fragment_seleccion_map" />
 
     <fragment
         android:id="@+id/nav_lista"
         android:name="com.softulp.exploradordefarmacias.ui.listaDeFarmacias.GalleryFragment"
         android:label="Lista de Farmacias"
-        tools:layout="@layout/fragment_gallery" />
-    <fragment
-        android:id="@+id/nav_settings"
-        android:name="com.softulp.exploradordefarmacias.ui.configuracion.SettingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_nav_lista_to_detallesFragment"
+            app:destination="@id/detallesFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.softulp.exploradordefarmacias.ui.salir.SlideshowFragment"
         android:label="Salir"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/detallesFragment"
+        android:name="com.softulp.exploradordefarmacias.ui.listaDeFarmacias.DetallesFragment"
+        android:label="fragment_detalles"
+        tools:layout="@layout/fragment_detalles" >
+        <action
+            android:id="@+id/action_detallesFragment_to_nav_lista"
+            app:destination="@id/nav_lista" />
+    </fragment>
+
+
+
 </navigation>

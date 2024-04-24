@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.softulp.exploradordefarmacias.R;
 import com.softulp.exploradordefarmacias.databinding.FragmentMapsBinding;
+import com.softulp.exploradordefarmacias.ui.configuracion.TipoDeMapaViewModel;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class MapsFragment extends Fragment {
     private FragmentMapsBinding binding;
     private GoogleMap map;
     private MapsFragmentViewModel vm;
+    private TipoDeMapaViewModel viewModel;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -60,20 +62,30 @@ public class MapsFragment extends Fragment {
         }
     };
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-         vm = new ViewModelProvider(this).get(MapsFragmentViewModel.class);
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        vm = new ViewModelProvider(this).get(MapsFragmentViewModel.class);
         binding = FragmentMapsBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(requireActivity()).get(TipoDeMapaViewModel.class);
+
+        viewModel.getMapType().observe(getViewLifecycleOwner(), type -> {
+            if (map != null) {
+                map.setMapType(type);
+            }
+        });
         View root = binding.getRoot();
+
         vm.getMlocation().observe(getViewLifecycleOwner(), new Observer<Location>() {
             @Override
             public void onChanged(Location location) {
                 LatLng miUbi = new LatLng(location.getLatitude(), location.getLongitude());
-                map.addMarker(new MarkerOptions().position(miUbi).title("Mi Ubicacion"));
+                map.addMarker(new MarkerOptions().position(miUbi).title("Mi Ubicación"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(miUbi));
             }
         });
+
         vm.lecturaPermanente();
+
         return root;
     }
 

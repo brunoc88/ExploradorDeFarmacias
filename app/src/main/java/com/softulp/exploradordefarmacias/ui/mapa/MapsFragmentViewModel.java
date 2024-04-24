@@ -17,6 +17,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -25,9 +26,12 @@ import java.util.List;
 public class MapsFragmentViewModel extends AndroidViewModel {
 
     private MutableLiveData<Location> mutableLocation;
+    private MutableLiveData<String> mutableMap;
     private FusedLocationProviderClient fused;
     private LocationCallback callback;
     private List<LatLng> farmacias;
+
+    private GoogleMap mapa;
     public MapsFragmentViewModel(@NonNull Application application) {
         super(application);
         fused = LocationServices.getFusedLocationProviderClient(getApplication());
@@ -40,6 +44,7 @@ public class MapsFragmentViewModel extends AndroidViewModel {
 
         return mutableLocation;
     }
+
     public void lecturaPermanente() {
        /* LocationRequest request = LocationRequest.create();
         request.setInterval(5000);
@@ -84,4 +89,8 @@ public class MapsFragmentViewModel extends AndroidViewModel {
     public void pararLecturaPermanente(){
         fused.removeLocationUpdates(callback);
     }
+
+
+
+
 }

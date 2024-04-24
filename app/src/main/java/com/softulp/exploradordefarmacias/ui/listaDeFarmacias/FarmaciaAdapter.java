@@ -1,7 +1,7 @@
 package com.softulp.exploradordefarmacias.ui.listaDeFarmacias;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,42 +18,41 @@ import com.softulp.exploradordefarmacias.modelo.Farmacia;
 import java.util.List;
 
 public class FarmaciaAdapter extends RecyclerView.Adapter<FarmaciaAdapter.ViewHolder> {
-    private List<Farmacia> listaDeFarmacias;
-    private Context context;
-    private LayoutInflater li;
 
-    public FarmaciaAdapter(List<Farmacia> listaDeFarmacias, Context context, LayoutInflater layoutInflater) {
-        this.listaDeFarmacias = listaDeFarmacias;
-        this.context = context;
-        this.li = layoutInflater;
+    private List<Farmacia> listaDeFarmacias;
+    private LayoutInflater li;
+    private FarmaciaItemClickListener listener;
+
+    public interface FarmaciaItemClickListener {
+        void onMasClicked(Bundle bundle);
     }
 
+    public FarmaciaAdapter(List<Farmacia> listaDeFarmacias, Context context, LayoutInflater layoutInflater, FarmaciaItemClickListener listener) {
+        this.listaDeFarmacias = listaDeFarmacias;
+        this.li = layoutInflater;
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = li.inflate(R.layout.item,parent,false);
+        View view = li.inflate(R.layout.item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.nombre.setText(listaDeFarmacias.get(position).getNombre());
-        //holder.foto.setImageResource(listaDeFarmacias.get(position).getFoto());
-        holder.horario.setText(listaDeFarmacias.get(position).getHorario());
-        holder.mas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, SecondActivity.class);
-                Farmacia farmacia = listaDeFarmacias.get(holder.getAdapterPosition());
-
-                intent.putExtra("TITULO", farmacia.getNombre());
-                intent.putExtra("DIRECCION", farmacia.getDireccion());
-                intent.putExtra("FOTO", farmacia.getFoto());
-                intent.putExtra("Horario", farmacia.getHorario());
-
-
-                context.startActivity(intent);
+        Farmacia farmacia = listaDeFarmacias.get(position);
+        holder.nombre.setText(farmacia.getNombre());
+        holder.horario.setText(farmacia.getHorario());
+        holder.mas.setOnClickListener(view -> {
+            if (listener != null) {
+                Bundle bundle = new Bundle();
+                bundle.putString("TITULO", farmacia.getNombre());
+                bundle.putString("DIRECCION", farmacia.getDireccion());
+                bundle.putInt("FOTO", farmacia.getFoto());
+                bundle.putString("HORARIO", farmacia.getHorario());
+                listener.onMasClicked(bundle);
             }
         });
     }
@@ -62,18 +61,18 @@ public class FarmaciaAdapter extends RecyclerView.Adapter<FarmaciaAdapter.ViewHo
     public int getItemCount() {
         return listaDeFarmacias.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView nombre;
-        private ImageView foto;
-        private TextView horario;
-        private Button mas;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView nombre, horario;
+        ImageView foto;
+        Button mas;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.tvNombre);
-            //foto = itemView.findViewById(R.id.ivFoto);
             horario = itemView.findViewById(R.id.tvHorario);
             mas = itemView.findViewById(R.id.btMas);
+            //foto = itemView.findViewById(R.id.ivFoto); // Descomenta si vas a usar la imagen
         }
     }
 }
